@@ -1,0 +1,22 @@
+watchers:
+  # Example script that calls notify-send on job update
+  - type: shell
+    cmd: ./contrib/notify.sh
+# Zuul instances to poll
+instances:
+  - zuul.openstack.org
+  - review.rdoproject.org/zuul
+# Rules used to select jobs
+rules:
+  - name: Watch patch
+    filters:
+      patch: "845054"
+    watched_fields:
+      - start_time
+      - result
+  - name: Watch line
+    filters:
+      pipeline_name: openstack-periodic-integration-main
+    watched_fields:
+      - start_time
+      - result
